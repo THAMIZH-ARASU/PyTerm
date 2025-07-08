@@ -1,0 +1,83 @@
+{
+  "current_path": "/home/user",
+  "root": {
+    "name": "",
+    "content": "",
+    "is_directory": true,
+    "permissions": "rwxr-xr-x",
+    "size": 0,
+    "children": {
+      "home": {
+        "name": "home",
+        "content": "",
+        "is_directory": true,
+        "permissions": "rwxr-xr-x",
+        "size": 0,
+        "children": {
+          "user": {
+            "name": "user",
+            "content": "",
+            "is_directory": true,
+            "permissions": "rwxr-xr-x",
+            "size": 0,
+            "children": {
+              "New": {
+                "name": "New",
+                "content": "",
+                "is_directory": true,
+                "permissions": "rwxr-xr-x",
+                "size": 0,
+                "children": {
+                  "temp.txt": {
+                    "name": "temp.txt",
+                    "content": "",
+                    "is_directory": false,
+                    "permissions": "rwxr-xr-x",
+                    "size": 0
+                  }
+                }
+              },
+              "Folder": {
+                "name": "Folder",
+                "content": "",
+                "is_directory": true,
+                "permissions": "rwxr-xr-x",
+                "size": 0
+              }
+            }
+          }
+        }
+      },
+      "tmp": {
+        "name": "tmp",
+        "content": "",
+        "is_directory": true,
+        "permissions": "rwxr-xr-x",
+        "size": 0
+      },
+      "var": {
+        "name": "var",
+        "content": "",
+        "is_directory": true,
+        "permissions": "rwxr-xr-x",
+        "size": 0
+      },
+      "usr": {
+        "name": "usr",
+        "content": "",
+        "is_directory": true,
+        "permissions": "rwxr-xr-x",
+        "size": 0,
+        "children": {
+          "bin": {
+            "name": "bin",
+            "content": "",
+            "is_directory": true,
+            "permissions": "rwxr-xr-x",
+            "size": 0
+          }
+        }
+      }
+    }
+  }
+}
