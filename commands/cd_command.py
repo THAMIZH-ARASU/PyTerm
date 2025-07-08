@@ -3,6 +3,7 @@ from commands.base_commands import BaseCommand
 from commands.command_result import CommandResult
 from env_manager.environment_manager import EnvironmentManager
 from file_system.virtual_file_system import VirtualFileSystem
+from errors.file_system_error import FileSystemError
 
 
 class CdCommand(BaseCommand):
@@ -19,4 +20,4 @@ class CdCommand(BaseCommand):
             env.set_variable("PWD", fs.current_path)
             return CommandResult(0)
         else:
-            return CommandResult(1, "", f"cd: {path}: No such file or directory")
+            raise FileSystemError(f"cd: {path}: No such file or directory")

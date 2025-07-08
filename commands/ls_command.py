@@ -4,6 +4,7 @@ from commands.command_result import CommandResult
 from env_manager.environment_manager import EnvironmentManager
 from file_system.virtual_file_system import VirtualFileSystem
 from utils.color import Colors
+from errors.file_system_error import FileSystemError
 
 
 class LsCommand(BaseCommand):
@@ -44,4 +45,4 @@ class LsCommand(BaseCommand):
             return CommandResult(0, "\n".join(output_lines))
             
         except Exception as e:
-            return CommandResult(1, "", f"ls: {str(e)}")
+            raise FileSystemError(f"ls: {str(e)}")

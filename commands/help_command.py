@@ -5,7 +5,6 @@ from commands.command_result import CommandResult
 from env_manager.environment_manager import EnvironmentManager
 from file_system.virtual_file_system import VirtualFileSystem
 from utils.color import Colors
-from utils.command_registry import CommandRegistry
 
 class HelpCommand(BaseCommand):
     """Show help for commands."""
@@ -16,6 +15,8 @@ class HelpCommand(BaseCommand):
     def execute(self, args: List[str], fs: VirtualFileSystem, 
                 env: EnvironmentManager, stdin: str = "") -> CommandResult:
         
+        from utils.command_registry import CommandRegistry  # Local import to avoid circular import
+
         if args:
             cmd_name = args[0]
             cmd = CommandRegistry.get_command(cmd_name)

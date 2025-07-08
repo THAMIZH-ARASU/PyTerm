@@ -5,12 +5,6 @@ from commands.command_result import CommandResult
 from env_manager.environment_manager import EnvironmentManager
 from file_system.virtual_file_system import VirtualFileSystem
 
-# Try to import readline, but don't fail if it's not available (Windows)
-try:
-    import readline
-    READLINE_AVAILABLE = True
-except ImportError:
-    READLINE_AVAILABLE = False
 
 # Try to import psutil for system information
 try:

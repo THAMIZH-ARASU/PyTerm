@@ -3,6 +3,8 @@ from commands.base_commands import BaseCommand
 from commands.command_result import CommandResult
 from env_manager.environment_manager import EnvironmentManager
 from file_system.virtual_file_system import VirtualFileSystem
+from errors.file_system_error import FileSystemError
+from errors.invalid_argument_error import InvalidArgumentError
 
 
 class TailCommand(BaseCommand):
@@ -26,14 +28,14 @@ class TailCommand(BaseCommand):
                     num_lines = int(args[i + 1])
                     i += 1
                 except ValueError:
-                    return CommandResult(1, "", f"tail: invalid number '{args[i + 1]}'")
+                    raise InvalidArgumentError(f"tail: invalid number '{args[i + 1]}'")
             elif arg.startswith("-n"):
                 try:
                     num_lines = int(arg[2:])
                 except ValueError:
-                    return CommandResult(1, "", f"tail: invalid number '{arg[2:]}'")
+                    raise InvalidArgumentError(f"tail: invalid number '{arg[2:]}'")
             elif arg.startswith("-"):
-                return CommandResult(1, "", f"tail: invalid option '{arg}'")
+                raise InvalidArgumentError(f"tail: invalid option '{arg}'")
             else:
                 files.append(arg)
             i += 1
@@ -44,7 +46,7 @@ class TailCommand(BaseCommand):
             for file_path in files:
                 content = fs.read_file(file_path)
                 if content is None:
-                    return CommandResult(1, "", f"tail: {file_path}: No such file or directory")
+                    raise FileSystemError(f"tail: {file_path}: No such file or directory")
                 
                 lines = content.split('\n')
                 selected_lines = lines[-num_lines:] if len(lines) >= num_lines else lines

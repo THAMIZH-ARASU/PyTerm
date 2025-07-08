@@ -3,6 +3,8 @@ from commands.base_commands import BaseCommand
 from commands.command_result import CommandResult
 from env_manager.environment_manager import EnvironmentManager
 from file_system.virtual_file_system import VirtualFileSystem
+from errors.file_system_error import FileSystemError
+from errors.invalid_argument_error import InvalidArgumentError
 
 class RmCommand(BaseCommand):
     """Remove files and directories."""
@@ -13,14 +15,10 @@ class RmCommand(BaseCommand):
     def execute(self, args: List[str], fs: VirtualFileSystem, 
                 env: EnvironmentManager, stdin: str = "") -> CommandResult:
         if not args:
-            return CommandResult(1, "", "rm: missing operand")
+            raise InvalidArgumentError("rm: missing operand")
         
-        errors = []
         for path in args:
             if not fs.remove(path):
-                errors.append(f"rm: cannot remove '{path}': No such file or directory")
-        
-        if errors:
-            return CommandResult(1, "", "\n".join(errors))
+                raise FileSystemError(f"rm: cannot remove '{path}': No such file or directory")
         
         return CommandResult(0)

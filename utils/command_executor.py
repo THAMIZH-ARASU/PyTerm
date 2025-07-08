@@ -7,6 +7,10 @@ from env_manager.environment_manager import EnvironmentManager
 from file_system.virtual_file_system import VirtualFileSystem
 from utils.command_parser import CommandParser, CommandPipeline, TokenType
 from utils.command_registry import CommandRegistry
+from errors.file_system_error import FileSystemError
+from errors.invalid_argument_error import InvalidArgumentError
+from errors.not_found_error import CommandNotFoundError
+from errors.terminal_error import TerminalError
 
 
 class CommandExecutor:
@@ -54,7 +58,14 @@ class CommandExecutor:
                 # If command failed and we're in a pipeline, stop
                 if not result.success and len(pipeline.commands) > 1:
                     break
-                    
+            except CommandNotFoundError as e:
+                return CommandResult(1, "", str(e))
+            except FileSystemError as e:
+                return CommandResult(1, "", str(e))
+            except InvalidArgumentError as e:
+                return CommandResult(1, "", str(e))
+            except TerminalError as e:
+                return CommandResult(1, "", str(e))
             except Exception as e:
                 return CommandResult(1, "", str(e))
         

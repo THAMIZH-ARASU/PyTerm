@@ -3,6 +3,8 @@ from commands.base_commands import BaseCommand
 from commands.command_result import CommandResult
 from env_manager.environment_manager import EnvironmentManager
 from file_system.virtual_file_system import VirtualFileSystem
+from errors.file_system_error import FileSystemError
+from errors.invalid_argument_error import InvalidArgumentError
 
 
 class MkdirCommand(BaseCommand):
@@ -14,14 +16,10 @@ class MkdirCommand(BaseCommand):
     def execute(self, args: List[str], fs: VirtualFileSystem, 
                 env: EnvironmentManager, stdin: str = "") -> CommandResult:
         if not args:
-            return CommandResult(1, "", "mkdir: missing operand")
+            raise InvalidArgumentError("mkdir: missing operand")
         
-        errors = []
         for path in args:
             if not fs.mkdir(path):
-                errors.append(f"mkdir: cannot create directory '{path}'")
-        
-        if errors:
-            return CommandResult(1, "", "\n".join(errors))
+                raise FileSystemError(f"mkdir: cannot create directory '{path}'")
         
         return CommandResult(0)
