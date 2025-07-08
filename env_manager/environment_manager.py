@@ -2,6 +2,12 @@
 # ENVIRONMENT MANAGER
 # =============================================================================
 
+import json
+import os
+import re
+from typing import Dict, List, Optional
+
+
 class EnvironmentManager:
     """Manages environment variables and shell state."""
     
