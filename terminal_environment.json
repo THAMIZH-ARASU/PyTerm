@@ -52,6 +52,13 @@
     "clear",
     "cd ..",
     "cd Folder",
-    "ls"
+    "ls",
+    "neofetch",
+    "clear",
+    "neofetch",
+    "clear",
+    "pip install psutil",
+    "clear",
+    "clear"
   ]
 }
