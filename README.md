@@ -1,4 +1,4 @@
-# Terminal Emulator
+# PyTerm - A Simple Terminal Simulator
 
 A Python-based terminal emulator with a persistent virtual filesystem, built-in Unix-like commands, and extensible architecture. This project is ideal for learning about shell environments, command parsing, and virtual filesystems.
 
