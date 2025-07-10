@@ -113,12 +113,34 @@ To add a new command:
 2. Subclass `BaseCommand` and implement the `execute` method.
 3. Import and register your command in `commands/__init__.py` and `utils/command_registry.py`.
 
-## Testing
+### Testing and Debugging Filesystem Issues
 
-Basic tests for the virtual filesystem are in `utils/tests.py`. To run them:
-```sh
-python -c "from utils.tests import run_tests; run_tests()"
+If you encounter filesystem-related test failures, you can debug the virtual filesystem with this script:
+
+```python
+from file_system.virtual_file_system import VirtualFileSystem
+
+def debug_mkdir():
+    fs = VirtualFileSystem()
+    
+    print("Testing mkdir functionality...")
+    print(f"Current path: {fs.current_path}")
+    print(f"Root exists: {fs.root is not None}")
+    print(f"Root is directory: {fs.root.is_directory}")
+    print(f"Root children: {fs.root.children}")
+    
+    # Test creating /test
+    result = fs.mkdir("/test")
+    print(f"mkdir('/test') returned: {result}")
+    print(f"After mkdir, root children: {fs.root.children}")
+    print(f"/test exists: {fs.exists('/test')}")
+    print(f"/test is directory: {fs.is_directory('/test')}")
+
+if __name__ == "__main__":
+    debug_mkdir()
 ```
+
+This will help identify issues with directory creation, path resolution, or filesystem state.
 
 ## Contributing
 

@@ -77,6 +77,22 @@
             "size": 0
           }
         }
+      },
+      "test": {
+        "name": "test",
+        "content": "",
+        "is_directory": true,
+        "permissions": "rwxr-xr-x",
+        "size": 0,
+        "children": {
+          "file.txt": {
+            "name": "file.txt",
+            "content": "Hello World",
+            "is_directory": false,
+            "permissions": "rwxr-xr-x",
+            "size": 11
+          }
+        }
       }
     }
   }
