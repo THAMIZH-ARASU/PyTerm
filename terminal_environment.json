@@ -59,6 +59,8 @@
     "clear",
     "pip install psutil",
     "clear",
+    "clear",
+    "neofetch",
     "clear"
   ]
 }
